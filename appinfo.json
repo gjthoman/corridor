@@ -1,17 +1,20 @@
 {
-    "appKeys": {},
+    "appKeys": {
+        "AppKeyBackgroundColor": 0,
+        "AppKeySecondTick": 1
+    },
     "capabilities": [
-        ""
+        "configurable"
     ],
-    "companyName": "Pebble Technology",
-    "enableMultiJS": false,
-    "longName": "My Simple Analog",
+    "companyName": "GregThoman",
+    "enableMultiJS": true,
+    "longName": "Corridor",
     "projectType": "native",
     "resources": {
         "media": []
     },
     "sdkVersion": "3",
-    "shortName": "My Simple Analog",
+    "shortName": "Corridor",
     "targetPlatforms": [
         "aplite",
         "basalt"
