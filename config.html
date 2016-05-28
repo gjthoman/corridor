@@ -17,8 +17,11 @@
     <input id='background_color_input' type='text' value='#000000'>
 	  Background Color
 	</input><br><br>
-    <input id='midground_color_input' type='text' value='#555555'>
-	  Midground Color
+    <input id='time_midground_color_input' type='text' value='#555555'>
+	  Time Midground Color
+	</input><br><br>
+	<input id='date_midground_color_input' type='text' value='#555555'>
+	  Date Midground Color
 	</input><br><br>
 	<input id='foreground_color_input' type='text' value='#FFFFFF'>
 	  Foreground Color
@@ -35,17 +38,14 @@
 		}
 
 		$(document).ready(function(){
-			// $("#int-input").on('keyup', function () {
-			// 	value = Number($(this).val()).toString(16).toUpperCase();
-			// 	$("#int-output").text(value);
-			// });
 			function numToHex(number) {
 				var str = Number(number).toString(16);
 				var pad = "000000";
 				return pad.substring(0, pad.length - str.length) + str;
 			}
 			$("#background_color_input").val(numToHex(getURLVariable("background_color")) || "000000");
-			$("#midground_color_input").val(numToHex(getURLVariable("midground_color")) || "555555");
+			$("#time_midground_color_input").val(numToHex(getURLVariable("time_midground_color")) || "555555");
+			$("#date_midground_color_input").val(numToHex(getURLVariable("date_midground_color")) || "555555");
 			$("#foreground_color_input").val(numToHex(getURLVariable("foreground_color")) || "FFFFFF");
 			
 			var colors = [];
@@ -71,7 +71,8 @@
 			    palette: [arrays[1],arrays[3],arrays[5],arrays[7],arrays[0],arrays[2],arrays[4],arrays[6],arrays[8]]
 			};
 			$("#background_color_input").spectrum(options);
-			$("#midground_color_input").spectrum(options);
+			$("#time_midground_color_input").spectrum(options);
+			$("#date_midground_color_input").spectrum(options);
 			$("#foreground_color_input").spectrum(options);
 		});
 
@@ -80,16 +81,17 @@
 	  	submitButton.addEventListener('click', function() {
 	    // Get the config data from the UI elements
 		    var backgroundColor = document.getElementById('background_color_input');
-		    var midgroundColor = document.getElementById('midground_color_input');
+		    var timeMidgroundColor = document.getElementById('time_midground_color_input');
+		    var dateMidgroundColor = document.getElementById('date_midground_color_input');
 		    var foregroundColor = document.getElementById('foreground_color_input');
 		    
 		    // Make a data object to be sent, coercing value types to integers
 		    var options = {
 		      'background_color': parseInt(backgroundColor.value.replace("#",""), 16),
-		      'midground_color': parseInt(midgroundColor.value.replace("#",""), 16),
+		      'time_midground_color': parseInt(timeMidgroundColor.value.replace("#",""), 16),
+		      'date_midground_color': parseInt(dateMidgroundColor.value.replace("#",""), 16),
 		      'foreground_color': parseInt(foregroundColor.value.replace("#",""), 16)
 		    };
-		    console.log(options);
 		    // Determine the correct return URL (emulator vs real watch)
 		    function getQueryParam(variable, defaultValue) {
 		      var query = location.search.substring(1);
@@ -108,8 +110,6 @@
 
 		    document.location = return_to + encodeURIComponent(JSON.stringify(options));
 		  });
-
-			console.log(getURLVariable("background_color"));
 	</script>
   </body>
 </html>
