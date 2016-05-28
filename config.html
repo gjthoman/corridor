@@ -39,9 +39,14 @@
 			// 	value = Number($(this).val()).toString(16).toUpperCase();
 			// 	$("#int-output").text(value);
 			// });
-			$("#background_color_input").val(Number(getURLVariable("background_color")).toString(16) || "000000");
-			$("#midground_color_input").val(Number(getURLVariable("midground_color")).toString(16) || "555555");
-			$("#foreground_color_input").val(Number(getURLVariable("foreground_color")).toString(16) || "FFFFFF");
+			function numToHex(number) {
+				var str = Number(number).toString(16);
+				var pad = "000000";
+				return pad.substring(0, pad.length - str.length) + str;
+			}
+			$("#background_color_input").val(numToHex(getURLVariable("background_color")) || "000000");
+			$("#midground_color_input").val(numToHex(getURLVariable("midground_color")) || "555555");
+			$("#foreground_color_input").val(numToHex(getURLVariable("foreground_color")) || "FFFFFF");
 			
 			var colors = [];
 			var alphaNums = ['0','5','A','F']
