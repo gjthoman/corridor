@@ -2,15 +2,86 @@
 <html>
   <head>
     <title>Corridor Configuration</title>
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script src='spectrum/spectrum.js'></script>
+
+	<link rel='stylesheet' href='spectrum/spectrum.css' />
   </head>
   <body>
-    
     <input id='background_color_input' type='text' value='#000000'>
 	  Background Color
-	</input>
-	<input id='second_tick_checkbox' type='checkbox'>
-	  Enable Second Ticks
-	</input>
+	</input><br><br>
+    <input id='midground_color_input' type='text' value='#555555'>
+	  Midground Color
+	</input><br><br>
+	<input id='foreground_color_input' type='text' value='#FFFFFF'>
+	  Foreground Color
+	</input><br><br>
 	<input id='submit_button' type='button' value='Save'>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var colors = [];
+			var alphaNums = ['0','5','A','F']
+			
+			$.each(alphaNums, function(i,s){
+				$.each(alphaNums, function(j,t){
+					$.each(alphaNums, function(k,u){
+						colors.push(t+s+u);
+					});
+				});
+			});
+			
+			
+			var arrays = [], size = 8;
+			arrays.push("");
+			while (colors.length > 0)
+			    arrays.push(colors.splice(0, size));
+
+			var options = {
+			    showPaletteOnly: true,
+			    preferredFormat: "hex",
+			    palette: [arrays[1],arrays[3],arrays[5],arrays[7],arrays[0],arrays[2],arrays[4],arrays[6],arrays[8]]
+			};
+			$("#background_color_input").spectrum(options);
+			$("#midground_color_input").spectrum(options);
+			$("#foreground_color_input").spectrum(options);
+		});
+
+		var submitButton = document.getElementById('submit_button');
+
+	  	submitButton.addEventListener('click', function() {
+	    // Get the config data from the UI elements
+		    var backgroundColor = document.getElementById('background_color_input');
+		    var midgroundColor = document.getElementById('midground_color_input');
+		    var foregroundColor = document.getElementById('foreground_color_input');
+		    
+		    // Make a data object to be sent, coercing value types to integers
+		    var options = {
+		      'background_color': parseInt(backgroundColor.value.replace("#",""), 16),
+		      'midground_color': parseInt(midgroundColor.value.replace("#",""), 16),
+		      'foreground_color': parseInt(foregroundColor.value.replace("#",""), 16)
+		    };
+		    console.log(options);
+		    // Determine the correct return URL (emulator vs real watch)
+		    function getQueryParam(variable, defaultValue) {
+		      var query = location.search.substring(1);
+		      var vars = query.split('&');
+		      for (var i = 0; i < vars.length; i++) {
+		        var pair = vars[i].split('=');
+		        if (pair[0] === variable) {
+		          return decodeURIComponent(pair[1]);
+		        }
+		      }
+		      return defaultValue || false;
+		    }
+		    var return_to = getQueryParam('return_to', 'pebblejs://close#');
+
+		    // Encode and send the data when the page closes
+
+		    document.location = return_to + encodeURIComponent(JSON.stringify(options));
+		  });
+
+	</script>
+
   </body>
 </html>
