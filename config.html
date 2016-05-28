@@ -35,9 +35,13 @@
 		}
 
 		$(document).ready(function(){
-			$("#background_color_input").val(getURLVariable("background_color") || "000000");
-			$("#midground_color_input").val(getURLVariable("midground_color") || "555555");
-			$("#foreground_color_input").val(getURLVariable("foreground_color") || "FFFFFF");
+			// $("#int-input").on('keyup', function () {
+			// 	value = Number($(this).val()).toString(16).toUpperCase();
+			// 	$("#int-output").text(value);
+			// });
+			$("#background_color_input").val(Number(getURLVariable("background_color")).toString(16) || "000000");
+			$("#midground_color_input").val(Number(getURLVariable("midground_color")).toString(16) || "555555");
+			$("#foreground_color_input").val(Number(getURLVariable("foreground_color")).toString(16) || "FFFFFF");
 			
 			var colors = [];
 			var alphaNums = ['0','5','A','F']
