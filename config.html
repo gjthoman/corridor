@@ -7,6 +7,9 @@
 
 	<link rel='stylesheet' href='spectrum/spectrum.css' />
 	<style type="text/css">
+		* {
+			font-family: sans-serif;
+		}
 		.sp-palette .sp-thumb-el {
 			height: 22px;
 			width: 22px;
@@ -14,6 +17,8 @@
 	</style>
   </head>
   <body>
+  	<h1>Corridor Settings</h1>
+  	<input type="checkbox" id="seconds" name="seconds" value="seconds">Always Update Seconds<br><br>
     <input id='background_color_input' type='text' value='#000000'>
 	  Background Color
 	</input><br><br>
@@ -43,6 +48,9 @@
 				var pad = "000000";
 				return pad.substring(0, pad.length - str.length) + str;
 			}
+
+			$('#seconds').prop('checked', getURLVariable("seconds") == "true" ? true : false);
+	
 			$("#background_color_input").val(numToHex(getURLVariable("background_color")) || "000000");
 			$("#time_midground_color_input").val(numToHex(getURLVariable("time_midground_color")) || "555555");
 			$("#date_midground_color_input").val(numToHex(getURLVariable("date_midground_color")) || "555555");
@@ -84,13 +92,15 @@
 		    var timeMidgroundColor = document.getElementById('time_midground_color_input');
 		    var dateMidgroundColor = document.getElementById('date_midground_color_input');
 		    var foregroundColor = document.getElementById('foreground_color_input');
+		    var seconds = document.getElementById('seconds');
 		    
 		    // Make a data object to be sent, coercing value types to integers
 		    var options = {
 		      'background_color': parseInt(backgroundColor.value.replace("#",""), 16),
 		      'time_midground_color': parseInt(timeMidgroundColor.value.replace("#",""), 16),
 		      'date_midground_color': parseInt(dateMidgroundColor.value.replace("#",""), 16),
-		      'foreground_color': parseInt(foregroundColor.value.replace("#",""), 16)
+		      'foreground_color': parseInt(foregroundColor.value.replace("#",""), 16),
+		      'seconds': seconds.checked
 		    };
 		    // Determine the correct return URL (emulator vs real watch)
 		    function getQueryParam(variable, defaultValue) {
