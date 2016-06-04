@@ -49,7 +49,7 @@
 				return pad.substring(0, pad.length - str.length) + str;
 			}
 
-			$('#seconds').prop('checked', getURLVariable("seconds") == "true" ? true : false);
+			$('#seconds').prop('checked', getURLVariable("seconds") == "True" ? true : false);
 	
 			$("#background_color_input").val(numToHex(getURLVariable("background_color")) || "000000");
 			$("#time_midground_color_input").val(numToHex(getURLVariable("time_midground_color")) || "555555");
