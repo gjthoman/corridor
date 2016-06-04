@@ -100,7 +100,7 @@
 		      'time_midground_color': parseInt(timeMidgroundColor.value.replace("#",""), 16),
 		      'date_midground_color': parseInt(dateMidgroundColor.value.replace("#",""), 16),
 		      'foreground_color': parseInt(foregroundColor.value.replace("#",""), 16),
-		      'seconds': seconds.checked
+		      'seconds': seconds.checked? 1:0
 		    };
 		    // Determine the correct return URL (emulator vs real watch)
 		    function getQueryParam(variable, defaultValue) {
