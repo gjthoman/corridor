@@ -1,7 +1,10 @@
 {
     "appKeys": {
         "AppKeyBackgroundColor": 0,
-        "AppKeySecondTick": 1
+        "AppKeyDateMidgroundColor": 2,
+        "AppKeyMainColor": 3,
+        "AppKeySeconds": 4,
+        "AppKeyTimeMidgroundColor": 1
     },
     "capabilities": [
         "configurable"
@@ -11,7 +14,14 @@
     "longName": "Corridor",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "images/screenshot.png",
+                "name": "SCREENSHOT",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            }
+        ]
     },
     "sdkVersion": "3",
     "shortName": "Corridor",
@@ -19,8 +29,8 @@
         "aplite",
         "basalt"
     ],
-    "uuid": "ecc8f112-318f-4ee2-be11-53c63b8a1139",
-    "versionLabel": "1.0",
+    "uuid": "8f6cf2a0-8313-40ad-8246-cf459481abe1",
+    "versionLabel": "1.9",
     "watchapp": {
         "watchface": true
     }
